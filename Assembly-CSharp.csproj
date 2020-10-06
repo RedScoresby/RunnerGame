@@ -52,14 +52,15 @@
     <UnityVersion>2020.1.6f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
     <Compile Include="Assets\Scripts\Skills\BaseSkill.cs" />
     <Compile Include="Assets\Scripts\Skills\Jump.cs" />
     <Compile Include="Assets\Scripts\Skills\Dash.cs" />
-    <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Utils\DoWhenTrigger.cs" />
-    <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
     <Compile Include="Assets\Scripts\Controllers\SpeedController.cs" />
-    <Compile Include="Assets\Scripts\Controllers\PlatformController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\StageController.cs" />
+    <Compile Include="Assets\Scripts\Utils\Pool.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

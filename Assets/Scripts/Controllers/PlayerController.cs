@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Skills")]
     public List<BaseSkill> listOfSkills;
-    private bool inFloor = true;
+    public bool inFloor = true;
 
     [Header("Movement")]
     public Rigidbody2D rigidBody;
