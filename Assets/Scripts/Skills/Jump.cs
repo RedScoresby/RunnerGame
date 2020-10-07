@@ -10,7 +10,6 @@ public class Jump : BaseSkill
 
     public override void ActivateSkill()
     {
-        Debug.Log("hi");
         playerController.rigidBody.AddForce(Vector2.up * force);
     }
 

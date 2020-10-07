@@ -7,12 +7,10 @@ public class StageController : MonoBehaviour
     [Header("Prefabs")]
     public List<GameObject> listOfEasyBlocks;
     public Dictionary<int, Pool> easyDictionary;
-    public GameObject blockMedium01;
-    public GameObject blockMedium02;
-    public Pool mediumPool;
-    public GameObject blockHard01;
-    public GameObject blockHard02;
-    public Pool hardPool;
+    public List<GameObject> listOfMediumBlocks;
+    public Dictionary<int, Pool> mediumDictionary;
+    public List<GameObject> listOfHardBlocks;
+    public Dictionary<int, Pool> hardDictionary;
 
     [Header("Settings")]
     public float minEasyDistanceInX;
@@ -39,8 +37,7 @@ public class StageController : MonoBehaviour
     {
         easyDictionary = new Dictionary<int, Pool>();
         StartDictionary(listOfEasyBlocks, easyDictionary);
-
-        Debug.Log(easyDictionary.Count);
+        
         StartCoroutine(SpawnNewParts());
     }
 

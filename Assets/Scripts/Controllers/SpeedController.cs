@@ -8,6 +8,13 @@ public class SpeedController : MonoBehaviour
     public CameraController cameraController;
 
     public float currentSpeed = 3;
+    public float amountToIncrease;
+    public float timeToIncrease;
+
+    private void Start()
+    {
+        StartCoroutine(IncreaseSpeed());
+    }
 
     public void SetSpeed (float newSpeed)
     {
@@ -19,5 +26,13 @@ public class SpeedController : MonoBehaviour
     {
         playercontroller.speed = currentSpeed;
         cameraController.speed = currentSpeed;
+    }
+
+    IEnumerator IncreaseSpeed()
+    {
+        currentSpeed += amountToIncrease;
+        SetSpeedToCurrentSpeed();
+        yield return new WaitForSeconds(timeToIncrease);
+        StartCoroutine(IncreaseSpeed());
     }
 }

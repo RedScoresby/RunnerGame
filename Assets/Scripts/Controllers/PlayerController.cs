@@ -13,12 +13,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
 
     #region Unity Events
-
-    private void Awake()
-    {
-        rigidBody = GetComponent<Rigidbody2D>();
-    }
-
+    
     void Update()
     {
         MovePlayer();

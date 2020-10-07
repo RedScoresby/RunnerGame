@@ -12,12 +12,18 @@ public class DoWhenTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((enterLayer.value & 1 << collision.gameObject.layer) != 0)
+        {
+            Debug.Log("Enter");
             whenEntersTrigger.Invoke();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if ((leaveLayer.value & 1 << collision.gameObject.layer) != 0)
+        {
+            Debug.Log("Exit");
             whenLeavesTrigger.Invoke();
+        }
     }
 }
