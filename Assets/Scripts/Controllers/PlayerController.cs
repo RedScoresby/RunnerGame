@@ -12,8 +12,18 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rigidBody;
     public float speed;
 
-    #region Unity Events
+    [Header("Layer")]
+    public string playerLayer;
     
+    private Vector3 originalPosition;
+
+    #region Unity Events
+
+    private void Awake()
+    {
+        originalPosition = transform.position;
+    }
+
     void Update()
     {
         MovePlayer();
@@ -37,6 +47,23 @@ public class PlayerController : MonoBehaviour
     public bool InTheFloor()
     {
         return inFloor;
+    }
+
+    public void SetLayer(string newLayer)
+    {
+        rigidBody.gameObject.layer = LayerMask.NameToLayer(newLayer);
+    }
+
+    public void ResetLayer()
+    {
+        SetLayer(playerLayer);
+    }
+
+    public void ResetPlayer()
+    {
+        SetFloor(true);
+        ResetLayer();
+        rigidBody.transform.position = originalPosition;
     }
 
     #endregion

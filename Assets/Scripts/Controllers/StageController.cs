@@ -37,12 +37,43 @@ public class StageController : MonoBehaviour
     {
         easyDictionary = new Dictionary<int, Pool>();
         StartDictionary(listOfEasyBlocks, easyDictionary);
-        
+
+        mediumDictionary = new Dictionary<int, Pool>();
+        hardDictionary = new Dictionary<int, Pool>();
+
         StartCoroutine(SpawnNewParts());
     }
 
     #endregion
-    
+
+    #region Public API
+
+    public void ResetStage()
+    {
+        ResetDictionary(easyDictionary);
+        ResetDictionary(mediumDictionary);
+        ResetDictionary(hardDictionary);
+        StopAllCoroutines();
+        currentEasyPosition = Vector3.zero;
+        StartCoroutine(SpawnNewParts());
+
+    }
+
+    public void IncreaseDifficulty()
+    {
+        switch (difficulty)
+        {
+            case Difficulty.easy:
+                difficulty = Difficulty.medium;
+                break;
+            case Difficulty.medium:
+                difficulty = Difficulty.hard;
+                break;
+        }
+    }
+
+    #endregion
+
     #region Helpers
 
     private void StartDictionary(List<GameObject> listOfObjects, Dictionary<int, Pool> dictionary)
@@ -90,6 +121,14 @@ public class StageController : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToDestroy);
         pool.RemoveObject(part);
+    }
+
+    private void ResetDictionary(Dictionary<int, Pool> dictionary)
+    {
+        for (int i = 0; i < dictionary.Count; i++)
+        {
+            dictionary[i].RemoveAllObjects();
+        }
     }
 
     #endregion

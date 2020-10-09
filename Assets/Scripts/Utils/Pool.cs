@@ -43,5 +43,11 @@ public class Pool
         activatedObject.SetActive(false);
     }
 
+    public void RemoveAllObjects()
+    {
+        foreach (GameObject o in listOfObjects)
+            RemoveObject(o);
+    }
+
     #endregion
 }
