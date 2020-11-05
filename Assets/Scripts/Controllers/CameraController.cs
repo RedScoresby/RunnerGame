@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Settings")]
     public float speed;
 
     private Rigidbody2D rigidBody;

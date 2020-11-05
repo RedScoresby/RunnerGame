@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -10,12 +11,17 @@ public class GameController : MonoBehaviour
     public PlayerController playerController;
     public CameraController cameraController;
     public UIController uiController;
+    public Timer timer;
+
+    [Header("Animations")]
+    public PlayerAnimations playerAnimations;
 
     #region Public API
 
     public void LoseGame()
     {
         Time.timeScale = 0;
+        playerAnimations.ResetAnimations();
         uiController.ActivateGameOverMenu(true);
     }
 
@@ -25,8 +31,11 @@ public class GameController : MonoBehaviour
         speedController.ResetSpeed();
         playerController.ResetPlayer();
         cameraController.ResetCamera();
+        timer.ResetTimer();
         uiController.ActivateGameOverMenu(false);
         Time.timeScale = 1;
+        playerAnimations.SetResetAnimation(false);
+        //SceneManager.LoadScene("MainGame");
     }
 
     #endregion

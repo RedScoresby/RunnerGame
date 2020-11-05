@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8115975932023666816}
   - component: {fileID: 2365360452173066096}
-  - component: {fileID: 6637536170269540377}
+  - component: {fileID: 7208299940379078779}
   m_Layer: 9
   m_Name: 'Floor_0 '
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 658813148840579909}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.32265, y: 0.08146, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,18 +72,19 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c0e182bb7c532ca4fa4848a3717a396e, type: 3}
+  m_Sprite: {fileID: -6209531952469204674, guid: f514467705915914ebed647972a8d55b,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 7.5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6637536170269540377
+--- !u!61 &7208299940379078779
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,16 +97,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.07973075}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 24.800001, y: 5.1707034}
-    newSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 7.5, y: 1.5}
+    newSize: {x: 7.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 24.800001, y: 5.0112414}
+  m_Size: {x: 7.5, y: 1.5}
   m_EdgeRadius: 0

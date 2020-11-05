@@ -11,7 +11,6 @@ public class Dash : BaseSkill
 
     [Header("Dash layer")]
     public string dashLayer;
-    public GameObject jumpColliderObject;
     public Collider2D playerCollider;
 
     private Vector3 initialPosition = Vector3.zero;
@@ -30,7 +29,23 @@ public class Dash : BaseSkill
     {
 
 #if UNITY_ANDROID
-        return Input.touchCount > 0;
+
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+                initialPosition = touch.position;
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                finalPositon = touch.position;
+                return CheckDash(ref initialPosition, finalPositon, 50f);
+            }
+        }
+
+        return false;
+
 #else
         if (Input.GetMouseButtonDown(0))
         {
@@ -40,7 +55,7 @@ public class Dash : BaseSkill
         if (Input.GetMouseButtonUp(0))
         {
             finalPositon = Input.mousePosition;
-            bool isDash = finalPositon.x > initialPosition.x;
+            bool isDash = (finalPositon.x - initialPosition.x) >= 100f;
             initialPosition = Vector3.zero;
             return isDash && !isOnCooldown;
         }
@@ -55,25 +70,26 @@ public class Dash : BaseSkill
 
     IEnumerator DoDash()
     {
-        playerController.rigidBody.constraints = RigidbodyConstraints2D.FreezePositionY;
-        playerController.SetLayer(dashLayer);
+        playerController.playerRigidBody.constraints = RigidbodyConstraints2D.FreezePositionY;
 
-        int previousLayer = jumpColliderObject.layer;
-        jumpColliderObject.layer = LayerMask.NameToLayer(dashLayer);
+        playerController.SetPlayerLayer(dashLayer);
+        playerController.SetJumpLayer(dashLayer);
         playerCollider.enabled = false;
+
+        playerController.playerAnimations.SetDashAnimation(true);
 
         SetDoingSkill(true);
         speedController.SetSpeed(dashSpeed);
 
-
         yield return new WaitForSeconds(0.2f);
 
-        playerController.rigidBody.constraints = RigidbodyConstraints2D.None;
-        playerController.rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        playerController.playerRigidBody.constraints = RigidbodyConstraints2D.None;
+        playerController.playerRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        playerController.playerAnimations.SetDashAnimation(false);
 
         playerCollider.enabled = true;
         playerController.ResetLayer();
-        jumpColliderObject.layer = previousLayer;
 
         SetDoingSkill(false);
         speedController.SetSpeedToCurrentSpeed();
@@ -86,6 +102,13 @@ public class Dash : BaseSkill
         yield return new WaitForSeconds(cooldownTime);
 
         isOnCooldown = false;
+    }
+    
+    private bool CheckDash(ref Vector3 firstPosition, Vector3 lastPosition, float difference)
+    {
+        bool isDash = (lastPosition.x - firstPosition.x) >= difference;
+        firstPosition = Vector3.zero;
+        return isDash && !isOnCooldown;
     }
 
     #endregion

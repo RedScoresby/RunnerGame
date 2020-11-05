@@ -114,7 +114,7 @@ public class StageController : MonoBehaviour
     {
         int index = Random.Range(0, dictionary.Count);
         GameObject newPart = dictionary[index].NewObject(newPosition);
-        StartCoroutine(DespawnParts(dictionary[index], newPart));
+        //StartCoroutine(DespawnParts(dictionary[index], newPart));
     }
 
     IEnumerator DespawnParts(Pool pool, GameObject part)

@@ -12,6 +12,7 @@ public class SpeedController : MonoBehaviour
     public float baseSpeed;
     public float currentSpeed = 3;
     public float amountToIncrease;
+    public float maxSpeed;
     public float timeToIncrease;
 
     #region Unity Events
@@ -53,8 +54,11 @@ public class SpeedController : MonoBehaviour
     {
         currentSpeed += amountToIncrease;
         SetSpeedToCurrentSpeed();
+
         yield return new WaitForSeconds(timeToIncrease);
-        StartCoroutine(IncreaseSpeed());
+
+        if (currentSpeed <= maxSpeed)
+            StartCoroutine(IncreaseSpeed());
     }
 
     #endregion
